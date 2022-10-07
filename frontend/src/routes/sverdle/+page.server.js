@@ -50,6 +50,7 @@ export const actions = {
 	 * the server, so that people can't cheat by peeking at the JavaScript
 	 */
 	enter: async ({ request, cookies }) => {
+		console.log({ request, cookies })
 		const game = new Game(cookies.get('sverdle'));
 
 		const data = await request.formData();

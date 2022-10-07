@@ -13064,9 +13064,9 @@ var _page_server = /*#__PURE__*/Object.freeze({
 
 const index = 4;
 const component = async () => (await import('./_page.svelte-d0b5b855.js')).default;
-const file = '_app/immutable/components/pages/sverdle/_page.svelte-46974e25.js';
-const imports = ["_app/immutable/components/pages/sverdle/_page.svelte-46974e25.js","_app/immutable/chunks/index-3a3eeba4.js","_app/immutable/chunks/singletons-7327c33f.js","_app/immutable/chunks/index-7a1d0fb0.js"];
+const file = '_app/immutable/components/pages/sverdle/_page.svelte-98a38015.js';
+const imports = ["_app/immutable/components/pages/sverdle/_page.svelte-98a38015.js","_app/immutable/chunks/index-3a3eeba4.js","_app/immutable/chunks/singletons-53615061.js","_app/immutable/chunks/index-7a1d0fb0.js"];
 const stylesheets = ["_app/immutable/assets/_page-b7948a4c.css"];
 
 export { component, file, imports, index, _page_server as server, stylesheets };
-//# sourceMappingURL=4-0f69b6e7.js.map
+//# sourceMappingURL=4-d0736b85.js.map
