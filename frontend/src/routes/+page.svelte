@@ -9,8 +9,8 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
-	<h1>
+<section class="w-full">
+	<h1 class="text-center">
 		<span class="welcome">
 			<picture>
 				<source srcset={welcome} type="image/webp" />
