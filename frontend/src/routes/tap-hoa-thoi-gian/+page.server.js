@@ -10,7 +10,7 @@ export const load = async ( ) => {
 	
 	// console.log('back ', json);
 
-	if (response.status === 404) {
+	if (response.status === 404 || response.status === 500) {
 		// user hasn't created a todo list.
 		// start with an empty array
 		return {
