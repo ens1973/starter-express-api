@@ -6,8 +6,8 @@
     let menu = [
         {'title':'Home', 'link':'/'},
         {'title':'Tap hoa thoi gian', 'link':'/tap-hoa-thoi-gian'},
-        {'title':'Đá quý', 'link':'/da-quy'},
-        {'title':'Website', 'link':'/website'},
+        // {'title':'Đá quý', 'link':'/da-quy'},
+        // {'title':'Website', 'link':'/website'},
         // {'title':'Blog', 'link':'/blog'},
         // {'title':'Admin', 'link':'/admin'}
     ]
