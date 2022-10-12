@@ -23,3 +23,7 @@ export function api(method, resource, data) {
 		body: data && JSON.stringify(data)
 	});
 }
+
+import PocketBase from 'pocketbase'
+
+export const client = new PocketBase('https://pb.anhcafe.com');

@@ -1,32 +1,45 @@
 /** @type {import('./$types').PageServerLoad} */
 import { error } from '@sveltejs/kit';
 import { api } from '$lib/api';
+import { client } from '$lib/api';
 
 export const load = async ( ) => {
 // export const load = async ({ url, locals }) => {
 	// locals.userid comes from src/hooks.js
-	const response = await api('GET', 'products/shop/page/1');
-	const json = await response.json();
+	// const response = await api('GET', 'products/shop/page/1');
+	// const json = await response.json();
 	
 	// console.log('back ', json);
 
-	if (response.status === 404 || response.status === 500) {
-		// user hasn't created a todo list.
-		// start with an empty array
-		return {
-			items: [],
-			current_page: 1,
-			total_page: 0
-		};
-	}
+	// if (response.status === 404 || response.status === 500) {
+	// 	// user hasn't created a todo list.
+	// 	// start with an empty array
+	// 	return {
+	// 		items: [],
+	// 		current_page: 1,
+	// 		total_page: 0
+	// 	};
+	// }
 
-	if (response.status === 200) {
-		return {
-			items: [...json?.items],
-			current_page: 1,
-			total_page: json?.total_page
-		};
-	}
+	// if (response.status === 200) {
+	// 	return {
+	// 		items: [...json?.items],
+	// 		current_page: 1,
+	// 		total_page: json?.total_page
+	// 	};
+	// }
+
+	const resultList = await client.records.getList('books', 1, 50, {
+	    sort: '-created',
+	});
+
+	console.log(resultList);
+	console.log(resultList.items);
+	// const data = await resultList.json();
+
+	return {
+		resultList
+	};
 
 	throw error(response.status);
 };
