@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/cyclic-software/starter-express-api#readme",
   "dependencies": {
-    "pocketbase": "^0.7.1",
     "express": "^4.17.1"
   },
   "type": "module"
