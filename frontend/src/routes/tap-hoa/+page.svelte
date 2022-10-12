@@ -5,7 +5,5 @@
 
 	export let data;
 
-    $: console.log(data)
 </script>
-
-<!-- <ListItem {data} /> -->
+<ListItem {data} />

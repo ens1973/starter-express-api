@@ -4,6 +4,7 @@
     import ListItem from '$lib/main/ListItem.svelte';
 
     export let data;
+    
 </script>
 
 <ListItem {data} />

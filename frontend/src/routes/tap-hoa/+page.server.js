@@ -2,6 +2,8 @@
 import { error } from '@sveltejs/kit';
 import { api } from '$lib/api';
 import { client } from '$lib/api';
+import { toObj } from '$lib/api';
+import { perPage } from '$lib/api';
 
 export const load = async ( ) => {
 // export const load = async ({ url, locals }) => {
@@ -29,19 +31,20 @@ export const load = async ( ) => {
 	// 	};
 	// }
 
-	const resultList = await client.records.getList('books', 1, 50, {
+	const response = await client.records.getList('books', 1, perPage, {
 	    sort: '-created',
 	});
 
-	console.log(resultList);
-	console.log(resultList.items);
-	// const data = await resultList.json();
+	// console.log(JSON.stringify(response));
+	// const json = JSON.stringify(response);
+	const data = await toObj(JSON.stringify(response));
+	// console.log(data);
 
-	return {
-		resultList
-	};
+	if (data?.code === 400 || data?.code === 403)
+		throw error(data?.code, data?.message);
 
-	throw error(response.status);
+	return data
+
 };
 
 // export function GET({ url }) {

@@ -11,7 +11,8 @@
 // const base = variables.VITE_API_URL;
 // const base = 'https://api.svelte.dev';
 // import { API_URL as base } from '$env/static/private';
-const base = process.env.API_URL;
+// const base = process.env.API_URL;
+const base = '';
 
 export function api(method, resource, data) {
 	// console.log(`${base}/${resource}`);
@@ -27,3 +28,13 @@ export function api(method, resource, data) {
 import PocketBase from 'pocketbase'
 
 export const client = new PocketBase('https://pb.anhcafe.com');
+export const perPage = 10;
+
+export const toObj = async (json) => {
+    try{
+        return JSON.parse(json);
+    }
+    catch (error){
+        return {'items':[]};
+    }
+}

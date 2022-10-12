@@ -12,13 +12,27 @@
     let total_page = 10;
     let current_page = 1;
 
-	$: products = [...data.items] ?? []
-    $: total_page = data.total_page ?? 10
-    $: current_page = data.current_page ?? 1
+    $: total_page = data.totalPages ?? 10
+    $: current_page = data.page ?? 1
     // $: console.log('front ', data);
     // $: console.log('front ', products);
+    // $: console.log(total_page, current_page);
 
 
+    const mapProducts = async (items) => {
+        const i = items.map((item) => {
+            return {
+                name: item.name,
+                description: item.description,
+                short_description: item.short_description,
+                price: item.price,
+            }
+        });
+        // console.log(i)
+        return i;
+    }
+
+    $: (async () => products = await mapProducts(data.items) )();
 </script>
 
 
@@ -30,9 +44,11 @@
 	    <CardProduct {...item} />
     {/each}
 </div>
+{#if total_page >= 2}
 <div class="flex flex-col items-center justify-center">
     <Pagination {total_page} {current_page} />
 </div>
+{/if}
 {:else}
 <div class="flex flex-col flex-1 items-center justify-center">
 <p class="text-xl text-center text-gray-800 capitalize lg:text-2xl dark:text-white">

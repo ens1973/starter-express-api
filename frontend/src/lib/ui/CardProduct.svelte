@@ -14,7 +14,7 @@
 <div class="w-full overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" use:events {...$$restProps}>
     <div class="px-4 py-2">
         <h1 class="text-2xl font-bold text-gray-800 uppercase truncate dark:text-white">{name}</h1>
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">{short_description}</p>
+        <p class="pt-1 text-sm text-gray-600 dark:text-gray-400 max-h-16 overflow-y-hidden">{short_description}</p>
     </div>
 
     <img class="object-cover w-full h-48 mt-2" src={img} alt="NIKE AIR">
@@ -23,5 +23,7 @@
         <h1 class="text-lg font-bold text-white">{price.toLocaleString('vi-VN')}</h1>
         <button class="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none">Add to cart</button>
     </div>
+
 </div>
+
 
