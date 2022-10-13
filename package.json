@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite dev --host=0.0.0.0",
-    "build": "vite build"
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "prettier --plugin-search-dir . --check .",
+    "format": "prettier --plugin-search-dir . --write ."
   },
   "repository": {
     "type": "git",
