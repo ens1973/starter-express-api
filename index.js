@@ -1,5 +1,8 @@
-import { handler } from './build/handler.js';
-import express from 'express';
+// import { handler } from './build/handler.js';
+// import express from 'express';
+
+const handler = require('./build/handler.js')
+const express = require('express')
 
 const app = express()
 app.all('/hey', (req, res) => {
