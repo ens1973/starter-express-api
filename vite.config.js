@@ -10,13 +10,7 @@ const config = {
             // bind volumes don't get fs events
             // so we need to poll now.
             usePolling: true,
-        },
-		// hmr: {
-		// 	protocol: 'ws',
-		// 	host: '0.0.0.0',
-		// 	// port: 3300,
-		// 	clientPort: 3300,
-		// },
+        }
 	}
 };
 
