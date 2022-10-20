@@ -2,7 +2,7 @@
 import { error } from '@sveltejs/kit';
 import { api } from '$lib/api';
 import { client } from '$lib/api';
-import { toObj } from '$lib/api';
+import { serializeNonPOJOs } from '$lib/api';
 import { perPage } from '$lib/api';
 
 export const load = async ({ params }) => {
@@ -38,7 +38,7 @@ export const load = async ({ params }) => {
 
 	// console.log(JSON.stringify(response));
 	// const json = JSON.stringify(response);
-	const data = await toObj(JSON.stringify(response));
+	const data = await serializeNonPOJOs(response);
 	// console.log(data);
 
 	if (data?.code === 400 || data?.code === 403)

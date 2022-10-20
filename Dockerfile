@@ -13,6 +13,7 @@ RUN npm install -g pnpm
 
 COPY package*.json pnpm*.yaml /frontend/
 
+# RUN npm install
 RUN pnpm install
 
 COPY . .
@@ -20,6 +21,7 @@ COPY . .
 #RUN pnpm run build
 #CMD sleep 1000
 
+# CMD npm run dev
 CMD pnpm run dev
 
 

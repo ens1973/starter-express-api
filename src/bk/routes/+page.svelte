@@ -1,7 +1,8 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	// import Counter from './Counter.svelte';
+	// import welcome from '$lib/images/svelte-welcome.webp';
+	// import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import { user } from '$lib/stores/user';
 </script>
 
 <svelte:head>
@@ -27,5 +28,9 @@
 
 	<Counter /> -->
 	<h1 class="text-center text-3xl font-semibold">Xin chào</h1>
+
+	<h1 class="text-3xl font-bold">
+		Welcome to the SvelteKit & PocketBase Project{ $user?.profile ? `, ${$user.profile.name}` : ''}! 👋
+	</h1>
 </section>
 

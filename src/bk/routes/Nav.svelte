@@ -2,6 +2,8 @@
 	// export let brandName = 'Anh cafe';
     import { page } from '$app/stores';
 
+    import { user } from '$lib/stores/user';
+
 
     let menu = [
         {'title':'Home', 'link':'/'},
@@ -12,6 +14,7 @@
         // {'title':'Admin', 'link':'/admin'}
     ]
 
+    // export let user;
     let brandName = 'anhcafe.com';
     let brandContent = 'Anh cafe . com';
 
@@ -55,7 +58,14 @@
             <a href={item.link} class="nav-link"
                 class:active={$page.url.pathname === item.link} >{item.title}</a>
         {/each}
-        
+        {#if $user?.profile }
+                <form action="/logout" method="POST">
+                    <button>Logout</button>
+                </form>
+        {:else}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        {/if}
     </div>
 </nav>
 
