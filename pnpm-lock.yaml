@@ -3,13 +3,17 @@ lockfileVersion: 5.4
 specifiers:
   '@fontsource/fira-mono': ^4.5.0
   '@neoconfetti/svelte': ^1.0.0
+  '@popperjs/core': ^2.11.6
   '@sveltejs/adapter-node': next
   '@sveltejs/kit': next
   '@tailwindcss/forms': ^0.5.3
   '@tailwindcss/typography': ^0.5.7
   autoprefixer: ^10.4.12
+  classnames: ^2.3.2
   dayjs: ^1.11.5
   express: ^4.17.1
+  flowbite: ^1.5.3
+  flowbite-svelte: ^0.27.9
   pocketbase: ^0.7.1
   postcss: ^8.4.17
   prettier: ^2.6.2
@@ -22,20 +26,24 @@ specifiers:
 dependencies:
   '@fontsource/fira-mono': 4.5.10
   '@neoconfetti/svelte': 1.0.0
-  '@sveltejs/adapter-node': 1.0.0-next.98
-  '@sveltejs/kit': 1.0.0-next.515_svelte@3.51.0+vite@3.1.7
+  '@popperjs/core': 2.11.6
+  '@sveltejs/adapter-node': 1.0.0-next.99
+  '@sveltejs/kit': 1.0.0-next.520_svelte@3.51.0+vite@3.1.7
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.1.8
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
   autoprefixer: 10.4.12_postcss@8.4.18
+  classnames: 2.3.2
   dayjs: 1.11.5
   express: 4.18.2
+  flowbite: 1.5.3
+  flowbite-svelte: 0.27.9
   pocketbase: 0.7.1
   postcss: 8.4.18
   prettier: 2.7.1
   prettier-plugin-svelte: 2.8.0_ibge6ami6vq2q2j5g4rcvk62hq
   svelte: 3.51.0
   svelte-preprocess: 4.10.7_zoczxmi4o3fslbwzsxwpwausyy
-  tailwindcss: 3.1.8
+  tailwindcss: 3.1.8_postcss@8.4.18
   vite: 3.1.7
 
 packages:
@@ -89,6 +97,10 @@ packages:
 
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
+    dev: false
+
+  /@popperjs/core/2.11.6:
+    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: false
 
   /@rollup/plugin-commonjs/23.0.0_rollup@2.79.1:
@@ -148,8 +160,8 @@ packages:
       picomatch: 2.3.1
     dev: false
 
-  /@sveltejs/adapter-node/1.0.0-next.98:
-    resolution: {integrity: sha512-eo89sswzm3ntZJgaQzz2MneqMqBfQWQj6b8VtImlHeq2AB+RSodippmKY0RyPcIJ0hJqdDc4DubU7XMDKkoTew==}
+  /@sveltejs/adapter-node/1.0.0-next.99:
+    resolution: {integrity: sha512-HnAuHtx0kWJrcsQ58YYFJca7FbAHvcuPL4CCEW9XDLTLHnZTwrwcB8eY//NSfxdJeVxf9JroXI3exnY4fYWEtQ==}
     dependencies:
       '@rollup/plugin-commonjs': 23.0.0_rollup@2.79.1
       '@rollup/plugin-json': 5.0.0_rollup@2.79.1
@@ -157,8 +169,8 @@ packages:
       rollup: 2.79.1
     dev: false
 
-  /@sveltejs/kit/1.0.0-next.515_svelte@3.51.0+vite@3.1.7:
-    resolution: {integrity: sha512-Ck+T16bci7VWc4CNP61xvfMrbDHX1Q8aPZWgthnrSH8hsdx9w1MP80D9V4A98WX0cyhCQ02JzlTmxgf2UpYRbQ==}
+  /@sveltejs/kit/1.0.0-next.520_svelte@3.51.0+vite@3.1.7:
+    resolution: {integrity: sha512-flroQQEwIHx6IEkskHGQ90Ri+gFCnAs4ZFRsG7QuTbuBu7XSeJNQs3J73pmBQoKp0pWnbwZ3YZMtwBJWF/I7qA==}
     engines: {node: '>=16.14'}
     hasBin: true
     requiresBuild: true
@@ -214,7 +226,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.1.8
+      tailwindcss: 3.1.8_postcss@8.4.18
     dev: false
 
   /@tailwindcss/typography/0.5.7_tailwindcss@3.1.8:
@@ -226,7 +238,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.1.8
+      tailwindcss: 3.1.8_postcss@8.4.18
     dev: false
 
   /@types/cookie/0.5.1:
@@ -424,6 +436,10 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
+
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
     dev: false
 
   /color-name/1.1.4:
@@ -859,6 +875,22 @@ packages:
       unpipe: 1.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /flowbite-svelte/0.27.9:
+    resolution: {integrity: sha512-0Zc3ZgvN4Ar0fOzM7ZtLVXMIi0MMXAgBrpC4UjdJ9LQTp34Xh/2aYqlp2WezfrkoZQGCvFfyqvXAf9V23DAFwQ==}
+    engines: {node: '>=16.0.0', npm: '>=7.0.0'}
+    dependencies:
+      '@popperjs/core': 2.11.6
+      classnames: 2.3.2
+      flowbite: 1.5.3
+    dev: false
+
+  /flowbite/1.5.3:
+    resolution: {integrity: sha512-e2OHfndxTHtGMqcPqvqwg3gGLg57hmIDVgE/BazMDccgirQ0JEtirKnbZZ4WSOIEhNDgO9pJZuyC8rRlcMm6pQ==}
+    dependencies:
+      '@popperjs/core': 2.11.6
+      mini-svg-data-uri: 1.4.4
     dev: false
 
   /forwarded/0.2.0:
@@ -1634,10 +1666,12 @@ packages:
     engines: {node: '>= 8'}
     dev: false
 
-  /tailwindcss/3.1.8:
+  /tailwindcss/3.1.8_postcss@8.4.18:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
