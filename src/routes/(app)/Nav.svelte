@@ -4,10 +4,10 @@
 
     import { user } from '$lib/stores/user';
 
-
+    // $: console.log($user);
     let menu = [
         {'title':'Home', 'link':'/'},
-        {'title':'Tap hoa', 'link':'/tap-hoa'},
+        {'title':'Tap hoa', 'link':'/shop'},
         // {'title':'Đá quý', 'link':'/da-quy'},
         // {'title':'Website', 'link':'/website'},
         // {'title':'Blog', 'link':'/blog'},
@@ -58,14 +58,14 @@
             <a href={item.link} class="nav-link"
                 class:active={$page.url.pathname === item.link} >{item.title}</a>
         {/each}
-        <!-- {#if $user?.profile }
-                <form action="/logout" method="POST">
+        {#if $user?.profile }
+                <form class="nav-link" action="/logout" method="POST">
                     <button>Logout</button>
                 </form>
         {:else}
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-        {/if} -->
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/register">Register</a>
+        {/if}
     </div>
 </nav>
 

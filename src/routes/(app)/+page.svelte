@@ -27,10 +27,10 @@
 	</h2>
 
 	<Counter /> -->
-	<h1 class="text-center text-3xl font-semibold">Xin chào</h1>
+	<h1 class="text-center text-3xl font-semibold">Xin chào { $user?.profile?.name || ''}! 👋</h1>
 
-	<h1 class="text-3xl font-bold">
+	<!-- <h1 class="text-3xl font-bold">
 		Welcome to the SvelteKit & PocketBase Project{ $user?.profile ? `, ${$user.profile.name}` : ''}! 👋
-	</h1>
+	</h1> -->
 </section>
 

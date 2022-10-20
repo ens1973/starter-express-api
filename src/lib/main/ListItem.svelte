@@ -1,12 +1,8 @@
 <script>
-    /** @type {import('./$types').PageData} */
-	// import { enhance } from '$lib/form';
-	// import { scale } from 'svelte/transition';
-	// import { flip } from 'svelte/animate';
-    import CardProduct from '$lib/ui/CardProduct.svelte';
-    import Pagination from '$lib/ui/Pagination.svelte';
+    import CardProduct from '../ui/CardProduct.svelte';
+    import Pagination from '../ui/Pagination.svelte';
 
-	export let data;
+    export let data
 
     let products = [];
     let total_page = 10;
@@ -14,10 +10,6 @@
 
     $: total_page = data.totalPages ?? 10
     $: current_page = data.page ?? 1
-    // $: console.log('front ', data);
-    // $: console.log('front ', products);
-    // $: console.log(total_page, current_page);
-
 
     const mapProducts = async (items) => {
         const i = items.map((item) => {
@@ -32,23 +24,26 @@
         return i;
     }
 
-    $: (async () => products = await mapProducts(data.items) )();
+    $: (async () => products = await mapProducts(data?.items) )();
 </script>
 
 
-
-<!-- <h1>tap hoa thoi gian</h1> -->
 {#if products.length > 0}
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 my-2">
     {#each products as item, index (index)}
-	    <CardProduct {...item} />
+        <!-- <p>{item.name}</p> -->
+        <CardProduct {...item}/>
     {/each}
 </div>
-{#if total_page >= 2}
-<div class="flex flex-col items-center justify-center">
-    <Pagination {total_page} {current_page} />
-</div>
-{/if}
+
+    {#if total_page >= 2}
+    <div class="flex flex-col items-center justify-center">
+        <!-- <p>total_page {total_page}</p> -->
+        <!-- <p>current_page {current_page}</p> -->
+        <Pagination {total_page} {current_page} />
+    </div>
+    {/if}
+
 {:else}
 <div class="flex flex-col flex-1 items-center justify-center">
 <p class="text-xl text-center text-gray-800 capitalize lg:text-2xl dark:text-white">

@@ -25,3 +25,11 @@ export function getEventsAction() {
       }
     };
 }
+
+
+    
+export const range = (size, start = 1, step = 1) => {
+    if (start < 1)
+        start = 1
+    return [...Array(size).keys()].map(i => (i + start) * step);
+}

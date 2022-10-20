@@ -135,9 +135,10 @@ export async function updateValue(obj, key, value) {
     // console.log(obj[key]);
 }
 
-export function range(size, start = 1, step = 1) {
-    if (start < 1)
+export const range = (size, start = 1, step = 1) => {
+    if (start < 1){
         start = 1
+    }
     return [...Array(size).keys()].map(i => (i + start) * step);
 }
 
