@@ -13,15 +13,26 @@
         // {'title':'Blog', 'link':'/blog'},
         // {'title':'Admin', 'link':'/admin'}
     ]
+    const getMenu = async () => {
+        let menu1 = [...menu]
+        if (!$user?.profile)
+            menu1 = [
+                ...menu,
+                {'title':'Login', 'link':'/login'},
+                {'title':'Register', 'link':'/register'}
+            ]
+        return menu1
+    }
+    $: (async () => menu = await getMenu())();
+
+
 
     // export let user;
     let brandName = 'anhcafe.com';
     let brandContent = 'Anh cafe . com';
 
+    
     let currentPageTitle = 'Home';
-    $: (async () => currentPageTitle = await getCurrentPageTitle($page.url.pathname))();
-
-
     const getCurrentPageTitle = async (pathname) => {
         let arr = pathname.split('/')
 
@@ -43,6 +54,7 @@
             title = `${currentMenuItem[0].title} | Trang ${arr.pop()}`;
         return title
     }
+    $: (async () => currentPageTitle = await getCurrentPageTitle($page.url.pathname))();
 
 </script>
 
@@ -59,12 +71,9 @@
                 class:active={$page.url.pathname === item.link} >{item.title}</a>
         {/each}
         {#if $user?.profile }
-                <form class="nav-link" action="/logout" method="POST">
-                    <button>Logout</button>
-                </form>
-        {:else}
-            <a class="nav-link" href="/login">Login</a>
-            <a class="nav-link" href="/register">Register</a>
+            <form class="nav-link" action="/logout" method="POST">
+                <button>Logout</button>
+            </form>
         {/if}
     </div>
 </nav>
