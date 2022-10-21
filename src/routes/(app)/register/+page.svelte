@@ -1,54 +1,29 @@
 <script>
-	// import DiCode from 'svelte-icons/di/DiCode.svelte';
-	export let form;
-
-	$:console.log(form);
+  import { Card, Button, Label, Input, Checkbox } from "flowbite-svelte";
+  export let form;
 </script>
-
-<div class="flex flex-col items-center h-full w-full pt-12">
-	<div class="h-24 w-24 text-primary">
-		<!-- <DiCode /> -->
-	</div>
-	<h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">
-		Register for an account
-	</h2>
-	<p class="text-center mt-1">
-		Or <a href="/login" class="text-primary font-medium hover:cursor-pointer">sign in</a> if you already
-		have an account.
-	</p>
-	<div class="bg-white py-6 shadow-md rounded-lg w-full max-w-sm mt-6">
-		<form method="POST" action="?/register" class="flex flex-col items-center space-y-2 w-full">
-			<div class="form-control w-full max-w-xs">
-				<label for="name" class="label font-medium pb-1">
-					<span class="label-text">Name</span>
-				</label>
-				<input type="text" name="name" class="input input-bordered w-full max-w-xs" />
+<Card class="w-full md:w-1/2 lg:w-1/3">
+	<form class="flex flex-col space-y-6" method="POST" action="?/register">
+		<h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">Sign up to our platform</h3>
+		<Label class="space-y-2">
+			<span>Name</span>
+			<Input type="name" name="name" placeholder="John Doe" required />
+		</Label>
+		<Label class="space-y-2">
+			<span>Email</span>
+			<Input type="email" name="email" placeholder="name@company.com" required />
+		</Label>
+		<Label class="space-y-2">
+			<span>Your password</span>
+			<Input type="password" name="password" placeholder="•••••" required />
+		</Label>
+		<Label class="space-y-2">
+			<span>Confirm password</span>
+			<Input type="password" name="passwordConfirm" placeholder="•••••" required />
+		</Label>
+		<Button type="submit" class="w-full">Register</Button>
+			<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+				Already have an account? <a href="/login" class="text-blue-700 hover:underline dark:text-blue-500">Login now!</a>
 			</div>
-			<div class="form-control w-full max-w-xs">
-				<label for="email" class="label font-medium pb-1">
-					<span class="label-text">Email</span>
-				</label>
-				<input type="email" name="email" class="input input-bordered w-full max-w-xs" />
-			</div>
-			<div class="form-control w-full max-w-xs">
-				<label for="password" class="label font-medium pb-1">
-					<span class="label-text">Password</span>
-				</label>
-				<input type="password" name="password" class="input input-bordered w-full max-w-xs" />
-			</div>
-			<div class="form-control w-full max-w-xs">
-				<label for="passwordConfirm" class="label font-medium pb-1">
-					<span class="label-text">Confirm Password</span>
-				</label>
-				<input
-					type="password"
-					name="passwordConfirm"
-					class="input input-bordered w-full max-w-sm"
-				/>
-			</div>
-			<div class="w-full max-w-xs pt-3">
-				<button class="btn btn-primary w-full max-w-xs">Register</button>
-			</div>
-		</form>
-	</div>
-</div>
+	</form>
+</Card>

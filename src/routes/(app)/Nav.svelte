@@ -1,10 +1,8 @@
 <script>
-	// export let brandName = 'Anh cafe';
     import { page } from '$app/stores';
-
     import { user } from '$lib/stores/user';
+    import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte'
 
-    // $: console.log($user);
     let menu = [
         {'title':'Home', 'link':'/'},
         {'title':'Tap hoa', 'link':'/shop'},
@@ -26,12 +24,9 @@
     $: (async () => menu = await getMenu())();
 
 
-
-    // export let user;
-    let brandName = 'anhcafe.com';
+    let brandName = 'Anhcafe.com';
     let brandContent = 'Anh cafe . com';
 
-    
     let currentPageTitle = 'Home';
     const getCurrentPageTitle = async (pathname) => {
         let arr = pathname.split('/')
@@ -55,38 +50,34 @@
         return title
     }
     $: (async () => currentPageTitle = await getCurrentPageTitle($page.url.pathname))();
-
 </script>
-
 
 <svelte:head>
     <title>{currentPageTitle} | {brandName}</title>
     <meta name="description" content={brandContent} />
 </svelte:head>
 
-<nav class="flex w-full bg-white shadow dark:bg-gray-800">
-    <div class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300">
+<Navbar let:hidden let:toggle rounded color="form">
+    <NavBrand href="/">
+        <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo"/> -->
+        <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">{brandName}</span>
+    </NavBrand>
+    <NavHamburger on:click={toggle} />
+    <NavUl {hidden}>
         {#each menu as item, index}
-            <a href={item.link} class="nav-link"
-                class:active={$page.url.pathname === item.link} >{item.title}</a>
+        <NavLi href={item.link} active={$page.url.pathname === item.link}>{item.title}</NavLi>
         {/each}
+
         {#if $user?.profile }
+        <NavLi>
             <form class="nav-link" action="/logout" method="POST">
                 <button>Logout</button>
             </form>
+        </NavLi>
         {/if}
-    </div>
-</nav>
-
-<style>
-    .nav-link {
-        @apply border-b-2 border-transparent transition-colors duration-200 transform mx-1.5 sm:mx-6;
-    }
-    .nav-link:hover,
-    .nav-link:focus,
-    .nav-link:active,
-    .nav-link.active
-    {
-        @apply text-gray-800 dark:text-gray-200 border-blue-500;
-    }
-</style>
+        <!-- <NavLi href="/shop">Tap hoa</NavLi>
+        <NavLi href="/login">Login</NavLi>
+        <NavLi href="/register">Register</NavLi>
+        <NavLi href="/contact">Contact</NavLi> -->
+    </NavUl>
+</Navbar>

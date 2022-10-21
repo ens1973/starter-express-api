@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/cyclic-software/starter-express-api#readme",
   "dependencies": {
-    "@fontsource/fira-mono": "^4.5.0",
+    "@fontsource/roboto": "^4.5.8",
     "@neoconfetti/svelte": "^1.0.0",
     "@popperjs/core": "^2.11.6",
     "@sveltejs/adapter-node": "next",

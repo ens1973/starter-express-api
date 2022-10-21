@@ -1,35 +1,24 @@
 <script>
-	// import DiCode from 'svelte-icons/di/DiCode.svelte';
+  import { Card, Button, Label, Input, Checkbox } from "flowbite-svelte";
 </script>
-
-<div class="flex flex-col items-center h-full w-full pt-12">
-	<div class="h-24 w-24 text-primary">
-		<!-- <DiCode /> -->
-	</div>
-	<h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">
-		Sign in to your account
-	</h2>
-	<p class="text-center mt-1">
-		Or <a href="/login" class="text-primary font-medium hover:cursor-pointer">register</a> if you don't
-		already have an account.
-	</p>
-	<div class="bg-white py-6 shadow-md rounded-lg w-full max-w-sm mt-6">
-		<form method="POST" action="?/login" class="flex flex-col items-center space-y-2 w-full">
-			<div class="form-control w-full max-w-xs">
-				<label for="email" class="label font-medium pb-1">
-					<span class="label-text">Email</span>
-				</label>
-				<input type="email" name="email" class="input input-bordered w-full max-w-xs" />
+<Card class="w-full md:w-1/2 lg:w-1/3">
+	<form class="flex flex-col space-y-6" method="POST" action="?/login">
+		<h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">Sign in to our platform</h3>
+		<Label class="space-y-2">
+			<span>Email</span>
+			<Input type="email" name="email" placeholder="name@company.com" required />
+		</Label>
+		<Label class="space-y-2">
+			<span>Your password</span>
+			<Input type="password" name="password" placeholder="•••••" required />
+		</Label>
+		<div class="flex items-start">
+				<Checkbox>Remember me</Checkbox>
+				<a href="/" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">Lost password?</a>
+		</div>
+		<Button type="submit" class="w-full">Login to your account</Button>
+			<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+				Not registered? <a href="/register" class="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
 			</div>
-			<div class="form-control w-full max-w-xs">
-				<label for="password" class="label font-medium pb-1">
-					<span class="label-text">Password</span>
-				</label>
-				<input type="password" name="password" class="input input-bordered w-full max-w-xs" />
-			</div>
-			<div class="w-full max-w-xs pt-3">
-				<button class="btn btn-primary w-full max-w-xs">Login</button>
-			</div>
-		</form>
-	</div>
-</div>
+	</form>
+</Card>
