@@ -14,10 +14,12 @@
     const mapProducts = async (items) => {
         const i = items.map((item) => {
             return {
+                id: item.id,
                 name: item.name,
                 description: item.description,
                 short_description: item.short_description,
                 price: item.price,
+                quantity: 1,
             }
         });
         // console.log(i)
@@ -32,7 +34,7 @@
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 my-2">
     {#each products as item, index (index)}
         <!-- <p>{item.name}</p> -->
-        <CardProduct {...item}/>
+        <CardProduct {item}/>
     {/each}
 </div>
 

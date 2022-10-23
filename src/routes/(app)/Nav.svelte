@@ -2,6 +2,8 @@
     import { page } from '$app/stores';
     import { user } from '$lib/stores/user';
     import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte'
+    import { Badge, Button } from 'flowbite-svelte';
+    import { cart } from '$lib/stores/cart'
 
     let menu = [
         {'title':'Home', 'link':'/'},
@@ -75,6 +77,10 @@
             </form>
         </NavLi>
         {/if}
+
+        <NavLi href='/cart'>
+              Cart<Badge rounded class="ml-2 w-5 h-5">{$cart?.totalQuantity}</Badge>
+        </NavLi>
         <!-- <NavLi href="/shop">Tap hoa</NavLi>
         <NavLi href="/login">Login</NavLi>
         <NavLi href="/register">Register</NavLi>
