@@ -11,7 +11,7 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section class="w-full h-full">
+<section class="main w-full flex flex-col flex-1 items-center justify-center ">
 
 <!-- <Accordion>
   <AccordionItem>
@@ -38,3 +38,8 @@
 	</h1> -->
 </section>
 
+<style>
+  section.main {
+    min-height: 85vh;
+  }
+</style>

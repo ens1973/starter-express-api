@@ -17,7 +17,7 @@ export function send (message, type = 'default', options) {
 }
 
 export function danger (messages, options={}) {
-  options.alerterror = true
+  options.color = 'red'
   if (isObject(messages)) {
     Object.keys(messages).forEach((key) => {
       [...messages[key]].forEach((message) => {
@@ -30,7 +30,7 @@ export function danger (messages, options={}) {
 }
 
 export function warning (messages, options={}) {
-  options.alertwarning = true
+  options.color = 'yellow'
   if (isObject(messages)) {
     Object.keys(messages).forEach((key) => {
       [...messages[key]].forEach((message) => {
@@ -43,7 +43,7 @@ export function warning (messages, options={}) {
 }
 
 export function info (messages, options={}) {
-  options.alertinfo = true
+  options.color = 'blue'
   if (isObject(messages)) {
     Object.keys(messages).forEach((key) => {
       [...messages[key]].forEach((message) => {
@@ -56,7 +56,7 @@ export function info (messages, options={}) {
 }
 
 export function success (messages, options={}) {
-  options.alertsuccess = true
+  options.color = 'green'
   if (isObject(messages)) {
     Object.keys(messages).forEach((key) => {
       [...messages[key]].forEach((message) => {

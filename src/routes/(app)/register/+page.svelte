@@ -2,6 +2,7 @@
   import { Card, Button, Label, Input, Checkbox } from "flowbite-svelte";
   export let form;
 </script>
+<section class="main w-full flex flex-col flex-1 items-center justify-center ">
 <Card class="w-full md:w-1/2 lg:w-1/3">
 	<form class="flex flex-col space-y-6" method="POST" action="?/register">
 		<h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">Sign up to our platform</h3>
@@ -27,3 +28,9 @@
 			</div>
 	</form>
 </Card>
+</section>
+<style>
+  section.main {
+    min-height: 85vh;
+  }
+</style>

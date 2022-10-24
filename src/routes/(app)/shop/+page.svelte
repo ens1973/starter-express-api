@@ -7,4 +7,14 @@
 
 </script>
 
-<ListItem {data} />
+
+<section class="main w-full flex flex-col flex-1 items-center ">
+
+    <ListItem {data} />
+
+</section>
+<style>
+  section.main {
+    min-height: 85vh;
+  }
+</style>

@@ -6,6 +6,7 @@
   	import { Button } from 'flowbite-svelte';
 </script>
 
+<section class="main w-full overflow-x-auto ">
 {#if $cart?.items.length > 0}
 <Table striped={true}>
   <TableHead>
@@ -31,3 +32,9 @@
   </TableBody>
 </Table>
 {/if}
+</section>
+<style>
+  section.main {
+    min-height: 85vh;
+  }
+</style>

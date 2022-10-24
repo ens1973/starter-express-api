@@ -1,5 +1,7 @@
 import { writable } from 'svelte/store';
 
+import * as notifier from '$lib/notifications/notifier.js'
+
 export const cart = writable({
     'items': [],
     'totalQuantity':0
@@ -26,6 +28,8 @@ export const addToCart = (item) => {
         c.items = [item, ...c.items]
         return c
     })
+    // notifier.success("Done!", {'accent': 1, 'persist': 1 });
+    notifier.success("Done!");
 }
 
 export const removeFromCart = (item) => {
@@ -42,4 +46,6 @@ export const removeFromCart = (item) => {
         })
         return c
     })
+
+    notifier.success("Done!");
 }

@@ -1,3 +1,88 @@
+
+<script>
+  import { Alert } from 'flowbite-svelte';
+  import { toaster } from './toaster.js'
+
+  export let themes = {
+    danger: '#EF4444',
+    success: '#10B981',
+    warning: '#F59E0B',
+    info: '#3B82F6',
+    default: '#6366F1'
+  }
+
+  export let timeout = 8000
+  export let sessionKey = 'byk-toasts'
+
+  let toasts = []
+
+  function animateOut (node, { delay = 0, duration = 1000 }) {
+    return {
+      delay,
+      duration,
+      css: t => `opacity: ${(t - 0.7) * 1}; transform-origin: top right;`
+    }
+  }
+
+  function createToast ({ detail }) {
+    const { message, type, options = {} } = detail
+    const background = themes[type] || themes.default
+    const color = options.color || false
+    // const red = options.red || false
+    // const yellow = options.yellow || false
+    // const blue = options.blue || false
+    // const green = options.green || false
+    const persist = options.persist
+    const accent = options.accent
+    const computedTimeout = options.persist ? 0 : (options.timeout || timeout)
+    const id = Math.random().toString(36).replace(/[^a-z]+/g, '')
+
+    try {
+      sessionStorage.setItem(
+        sessionKey,
+        JSON.stringify([
+          ...JSON.parse(sessionStorage.getItem(sessionKey) || '[]'),
+          { ...detail, id }
+        ])
+      )
+    } catch (e) {}
+    // console.log(red, yellow, blue, green)
+    toasts = [ {
+      id,
+      message,
+      background,
+      color,
+      // red,
+      // yellow,
+      // blue,
+      // green,
+      accent,
+      persist,
+      timeout: computedTimeout,
+      width: '100%'
+    }, ...toasts ]
+  }
+
+  function maybePurge (toast) {
+    !toast.persist && purge(toast.id)
+  }
+
+  function purge (id) {
+    const filter = t => t.id !== id
+    toasts = toasts.filter(filter)
+    try {
+      sessionStorage.setItem(
+        sessionKey,
+        JSON.stringify(
+          JSON.parse(sessionStorage.getItem(sessionKey) || '[]').filter(filter)
+        )
+      )
+    } catch (e) {
+
+    }
+  }
+</script>
+
 <ul class="toasts" use:toaster={sessionKey} on:notify={createToast}>
   {#each toasts as toast (toast.id)}
     <!-- <li class="toast rounded-md overflow-hidden" style="background: {toast.background};" out:animateOut>
@@ -16,29 +101,14 @@
       </div>
     </li> -->
 
-    <li class="relative block overflow-hidden alert rounded-xl m-1 p-3"
-      class:alert-info={toast.alertinfo} 
-      class:alert-error={toast.alerterror} 
-      class:alert-warning={toast.alertwarning} 
-      class:alert-success={toast.alertsuccess} out:animateOut>
-      {#if toast.persist}
-      <button class="" on:click={() => purge(toast.id)}>
-        ✕
-      </button>
-      {/if}
+    <li class="relative block alert m-1" out:animateOut>
       <div class="flex flex-toasts items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mr-2 stroke-current">
-        {#if toast.alertinfo}
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>                          
-        {:else if toast.alerterror}
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>                      
-        {:else if toast.alertwarning}
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>                         
-        {:else if toast.alertsuccess}
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>                
-        {/if}
-        </svg>
-        <label class="leading-none pb-1" for="">{toast.message}</label>
+        
+        <Alert color="{toast.color}" accent={toast.accent} dismissable={toast.persist}>
+          <span slot="icon"><svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg></span>
+          <span class="mr-2">{toast.message}</span>
+        </Alert>
+
       </div>
       <div 
         class="progress" 
@@ -65,7 +135,7 @@
     /*z-index: 9999;*/
     animation: animate-in 600ms forwards;
   }
-    
+    /*
   .toasts .flex-toasts::before {
     content: "";
     position: absolute;
@@ -73,7 +143,6 @@
     top: 0;
     right: 0;
     bottom: 0;
-    /*z-index: 0;*/
     z-index: -1;
   }
 
@@ -102,7 +171,6 @@
   .toasts .alert-success .flex-toasts::before {
     background-color: rgba(220,252,231,0.75);
   }
-
   .toasts > .alert > button{
     position: absolute;
     font-size: 18px;
@@ -115,6 +183,8 @@
     border: 0;
     background-color: transparent;
   }
+*/
+
     
   .toasts > .alert > .progress {
     position: absolute;
@@ -122,7 +192,7 @@
     left: 0;
     right: 0;
     background-color: rgb(0, 0, 0, 0.3);
-    height: 6px;
+    height: 0px;
     animation-name: shrink;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
@@ -239,82 +309,3 @@
     }*/
   }
 </style>
-
-<script>
-  import { toaster } from './toaster.js'
-
-  export let themes = {
-    danger: '#EF4444',
-    success: '#10B981',
-    warning: '#F59E0B',
-    info: '#3B82F6',
-    default: '#6366F1'
-  }
-
-  export let timeout = 8000
-  export let sessionKey = 'byk-toasts'
-
-  let toasts = []
-
-  function animateOut (node, { delay = 0, duration = 1000 }) {
-    return {
-      delay,
-      duration,
-      css: t => `opacity: ${(t - 0.7) * 1}; transform-origin: top right;`
-    }
-  }
-
-  function createToast ({ detail }) {
-    const { message, type, options = {} } = detail
-    const background = themes[type] || themes.default
-    const alerterror = options.alerterror ? options.alerterror : false
-    const alertwarning = options.alertwarning ? options.alertwarning : false
-    const alertinfo = options.alertinfo ? options.alertinfo : false
-    const alertsuccess = options.alertsuccess ? options.alertsuccess : false
-    const persist = options.persist
-    const computedTimeout = options.persist ? 0 : (options.timeout || timeout)
-    const id = Math.random().toString(36).replace(/[^a-z]+/g, '')
-
-    try {
-      sessionStorage.setItem(
-        sessionKey,
-        JSON.stringify([
-          ...JSON.parse(sessionStorage.getItem(sessionKey) || '[]'),
-          { ...detail, id }
-        ])
-      )
-    } catch (e) {}
-    // console.log(alerterror, alertwarning, alertinfo, alertsuccess)
-    toasts = [ {
-      id,
-      message,
-      background,
-      alerterror,
-      alertwarning,
-      alertinfo,
-      alertsuccess,
-      persist,
-      timeout: computedTimeout,
-      width: '100%'
-    }, ...toasts ]
-  }
-
-  function maybePurge (toast) {
-    !toast.persist && purge(toast.id)
-  }
-
-  function purge (id) {
-    const filter = t => t.id !== id
-    toasts = toasts.filter(filter)
-    try {
-      sessionStorage.setItem(
-        sessionKey,
-        JSON.stringify(
-          JSON.parse(sessionStorage.getItem(sessionKey) || '[]').filter(filter)
-        )
-      )
-    } catch (e) {
-
-    }
-  }
-</script>
