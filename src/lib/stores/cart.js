@@ -79,12 +79,12 @@ export const placeOrder = async () => {
         })
     })
     const jsondata = await sendorder.json()
-    console.log(jsondata);
+    // console.log(jsondata);
 
-    // cart.set({
-    //     'items': [],
-    //     'totalQuantity':0
-    // })
+    cart.set({
+        'items': [],
+        'totalQuantity':0
+    })
     
     notifier.success("Done!");
 }

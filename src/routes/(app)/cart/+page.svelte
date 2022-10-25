@@ -30,14 +30,14 @@
       </TableBodyCell>
     </TableBodyRow>
     {/each}
-    <TableBodyRow>
+    <!-- <TableBodyRow>
       <TableBodyCell></TableBodyCell>
       <TableBodyCell></TableBodyCell>
       <TableBodyCell></TableBodyCell>
       <TableBodyCell>
         <Button color="green" on:click={() => placeOrder()}>Order Now</Button>
       </TableBodyCell>
-    </TableBodyRow>
+    </TableBodyRow> -->
   </TableBody>
 </Table>
 {/if}
