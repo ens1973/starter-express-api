@@ -1,6 +1,7 @@
 <script>
     import { cart } from '$lib/stores/cart'
     import { addToCart } from '$lib/stores/cart'
+    import { placeOrder } from '$lib/stores/cart'
     import { removeFromCart } from '$lib/stores/cart'
   	import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
   	import { Button } from 'flowbite-svelte';
@@ -29,6 +30,14 @@
       </TableBodyCell>
     </TableBodyRow>
     {/each}
+    <TableBodyRow>
+      <TableBodyCell></TableBodyCell>
+      <TableBodyCell></TableBodyCell>
+      <TableBodyCell></TableBodyCell>
+      <TableBodyCell>
+        <Button color="green" on:click={() => placeOrder()}>Order Now</Button>
+      </TableBodyCell>
+    </TableBodyRow>
   </TableBody>
 </Table>
 {/if}
