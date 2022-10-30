@@ -1,35 +1,16 @@
 <script>
     import { page } from '$app/stores';
-    import { user } from '$lib/stores/user';
     import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte'
     import { Badge, Button } from 'flowbite-svelte';
+    
+    import { user } from '$lib/stores/user';
+    import { menu } from '$lib/stores/menu';
     import { cart } from '$lib/stores/cart'
-
-    let menu = [
-        {'title':'Home', 'link':'/'},
-        {'title':'Tap hoa', 'link':'/shop'},
-        // {'title':'Đá quý', 'link':'/da-quy'},
-        // {'title':'Website', 'link':'/website'},
-        // {'title':'Blog', 'link':'/blog'},
-        // {'title':'Admin', 'link':'/admin'}
-    ]
-    const getMenu = async () => {
-        let menu1 = [...menu]
-        if (!$user?.profile)
-            menu1 = [
-                ...menu,
-                {'title':'Login', 'link':'/login'},
-                {'title':'Register', 'link':'/register'}
-            ]
-        return menu1
-    }
-    $: (async () => menu = await getMenu())();
-
 
     let brandName = 'Anhcafe.com';
     let brandContent = 'Anh cafe . com';
 
-    let currentPageTitle = 'Home';
+    let currentPageTitle = 'Anhcafe.com';
     const getCurrentPageTitle = async (pathname) => {
         let arr = pathname.split('/')
 
@@ -38,7 +19,7 @@
             path = `/${arr[1]}`;
         
         
-        let currentMenuItem = menu.filter((item) => {
+        let currentMenuItem = $menu.filter((item) => {
             if (path === item.link)
                 return item
             return
@@ -66,7 +47,7 @@
     </NavBrand>
     <NavHamburger on:click={toggle} />
     <NavUl {hidden}>
-        {#each menu as item, index}
+        {#each $menu as item, index}
         <NavLi href={item.link} active={$page.url.pathname === item.link}>{item.title}</NavLi>
         {/each}
 

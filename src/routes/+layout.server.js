@@ -2,10 +2,34 @@
 import { client } from '$lib/api';
 import { serializeNonPOJOs } from '$lib/api';
 
+const baseMenu = [
+    {'title':'Home', 'link':'/'},
+    {'title':'Tap hoa', 'link':'/shop'},
+    // {'title':'Đá quý', 'link':'/da-quy'},
+    // {'title':'Website', 'link':'/website'},
+    // {'title':'Blog', 'link':'/blog'},
+    // {'title':'Admin', 'link':'/admin'}
+]
+const getMenu = async (user) => {
+    let menu1 = [...baseMenu]
+    if (!user?.profile)
+        menu1 = [
+            ...menu1,
+            {'title':'Login', 'link':'/login'},
+            {'title':'Register', 'link':'/register'}
+        ]
+    return menu1
+}
+// $: (async () => menu = await getMenu())();
+
+
 export const load = async () => {
-    if (client.authStore.isValid) {
-        let user = await serializeNonPOJOs(client.authStore.model);
-        // console.log(user);
-        return user
+    let user;
+    if (client.authStore.isValid)
+        user = await serializeNonPOJOs(client.authStore.model);
+    const menu = await getMenu(user);
+    return {
+        user,
+        menu
     }
 };
