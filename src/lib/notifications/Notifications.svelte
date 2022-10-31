@@ -11,7 +11,7 @@
     default: '#6366F1'
   }
 
-  export let timeout = 8000
+  export let timeout = 5000
   export let sessionKey = 'byk-toasts'
 
   let toasts = []
@@ -34,7 +34,8 @@
     // const green = options.green || false
     const persist = options.persist
     const accent = options.accent
-    const computedTimeout = options.persist ? 0 : (options.timeout || timeout)
+    // const computedTimeout = options.persist ? 0 : (options.timeout || timeout)
+    const computedTimeout = (options.timeout || timeout)
     const id = Math.random().toString(36).replace(/[^a-z]+/g, '')
 
     try {
@@ -64,7 +65,8 @@
   }
 
   function maybePurge (toast) {
-    !toast.persist && purge(toast.id)
+    // !toast.persist && purge(toast.id)
+    purge(toast.id)
   }
 
   function purge (id) {

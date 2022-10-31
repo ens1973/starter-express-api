@@ -60,11 +60,7 @@
         {/if}
 
         <NavLi href='/cart'>
-              Cart<Badge rounded class="ml-2 w-5 h-5">{$cart?.totalQuantity}</Badge>
+              Cart<Badge rounded class="ml-2 w-5 h-5">{$cart?.total_quantity}</Badge>
         </NavLi>
-        <!-- <NavLi href="/shop">Tap hoa</NavLi>
-        <NavLi href="/login">Login</NavLi>
-        <NavLi href="/register">Register</NavLi>
-        <NavLi href="/contact">Contact</NavLi> -->
     </NavUl>
 </Navbar>

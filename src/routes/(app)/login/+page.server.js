@@ -10,8 +10,7 @@ export const load = async () => {
 
 export const actions = {
 	login: async ({ request }) => {
-		const formData = await request.formData();
-		const data = Object.fromEntries([...formData]);
+		const data = Object.fromEntries(await request.formData());
 
 		try {
 			const { token, user } = await client.users.authViaEmail(data.email, data.password);

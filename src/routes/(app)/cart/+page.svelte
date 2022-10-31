@@ -5,6 +5,8 @@
     import { removeFromCart } from '$lib/stores/cart'
   	import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
   	import { Button } from 'flowbite-svelte';
+    let current_cart;
+    $: (async () => cart.subscribe((c) => current_cart = JSON.stringify(c)))();
 </script>
 
 <section class="main w-full overflow-x-auto ">
@@ -30,14 +32,17 @@
       </TableBodyCell>
     </TableBodyRow>
     {/each}
-    <!-- <TableBodyRow>
+    <TableBodyRow>
       <TableBodyCell></TableBodyCell>
       <TableBodyCell></TableBodyCell>
       <TableBodyCell></TableBodyCell>
       <TableBodyCell>
-        <Button color="green" on:click={() => placeOrder()}>Order Now</Button>
+        <form action="?/placeorder" method="POST">
+          <input type="text" name="json" bind:value={current_cart}>
+          <Button color="green" type="submit">Order Now</Button>
+        </form>
       </TableBodyCell>
-    </TableBodyRow> -->
+    </TableBodyRow>
   </TableBody>
 </Table>
 {/if}
