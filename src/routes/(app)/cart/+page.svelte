@@ -5,7 +5,33 @@
     import { removeFromCart } from '$lib/stores/cart'
   	import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
   	import { Button } from 'flowbite-svelte';
+    import * as notifier from '$lib/notifications/notifier.js'
+    
+    export let form;
     let current_cart;
+  
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    
+    const noti = async (form) => {
+      await delay(4000);
+      if (form?.msg?.data) {
+        const data = form?.msg?.data;
+        Object.keys(data).map((i) => {
+          const error = `${i}: ${data[i].message}`
+          notifier.danger(error);
+          return
+        })
+      }
+    }
+
+    $: if (form?.error === true) {
+        console.log(form);
+        noti(form?.msg?.data)
+      } else {
+        console.log(form);
+      }
+    // $: console.log(form);
+    $: (async () => await noti(form) )();
     $: (async () => cart.subscribe((c) => current_cart = JSON.stringify(c)))();
 </script>
 
