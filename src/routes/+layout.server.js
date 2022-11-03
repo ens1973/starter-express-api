@@ -12,12 +12,22 @@ const baseMenu = [
 ]
 const getMenu = async (user) => {
     let menu1 = [...baseMenu]
-    if (!user?.profile)
+
+    if ( !user?.id )
+        // menu for guest
         menu1 = [
             ...menu1,
             {'title':'Login', 'link':'/login'},
             {'title':'Register', 'link':'/register'}
         ]
+    
+    if ( user?.avatar >= 0 )
+        // menu for administrator
+        menu1 = [
+            ...menu1,
+            {'title':'Customer Orders', 'link':'/_/order'},
+        ]
+    
     return menu1
 }
 // $: (async () => menu = await getMenu())();

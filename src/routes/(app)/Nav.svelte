@@ -51,7 +51,7 @@
         <NavLi href={item.link} active={$page.url.pathname === item.link}>{item.title}</NavLi>
         {/each}
 
-        {#if $user?.profile }
+        {#if $user?.id }
         <NavLi>
             <form class="nav-link" action="/logout" method="POST">
                 <button>Logout</button>

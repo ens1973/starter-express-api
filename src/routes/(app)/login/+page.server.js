@@ -11,9 +11,13 @@ export const load = async () => {
 export const actions = {
 	login: async ({ request }) => {
 		const data = Object.fromEntries(await request.formData());
-
+		// console.log(data)
 		try {
-			const { token, user } = await client.users.authViaEmail(data.email, data.password);
+			if (data.asadmin === '1') {
+				const { token, user } = await client.admins.authViaEmail(data.email, data.password);
+			} else {
+				const { token, user } = await client.users.authViaEmail(data.email, data.password);
+			}
 		} catch (err) {
 			const e = await serializeNonPOJOs(err);
 			// console.log('Error:', e);
