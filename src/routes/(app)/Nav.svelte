@@ -26,7 +26,7 @@
         });
 
         if (currentMenuItem.length <= 0)
-            return 'Error'
+            return 'Anhcafe'
         let title = currentMenuItem[0].title;
         if (arr.indexOf('page') >= 0)
             title = `${currentMenuItem[0].title} | Trang ${arr.pop()}`;
@@ -51,6 +51,10 @@
         <NavLi href={item.link} active={$page.url.pathname === item.link}>{item.title}</NavLi>
         {/each}
 
+        <NavLi href='/cart'>
+              Cart<Badge rounded class="ml-2 w-5 h-5">{$cart?.total_quantity}</Badge>
+        </NavLi>
+
         {#if $user?.id }
         <NavLi>
             <form class="nav-link" action="/logout" method="POST">
@@ -58,9 +62,5 @@
             </form>
         </NavLi>
         {/if}
-
-        <NavLi href='/cart'>
-              Cart<Badge rounded class="ml-2 w-5 h-5">{$cart?.total_quantity}</Badge>
-        </NavLi>
     </NavUl>
 </Navbar>

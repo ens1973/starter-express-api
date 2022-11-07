@@ -5,7 +5,7 @@ import { serializeNonPOJOs } from '$lib/api';
 
 export const load = async () => {
 	if (client.authStore.isValid)
-		throw redirect(303, '/');
+		throw redirect(303, '/_/');
 };
 
 export const actions = {
@@ -13,7 +13,7 @@ export const actions = {
 		const data = Object.fromEntries(await request.formData());
 		// console.log(data)
 		try {
-			const { token, user } = await client.users.authViaEmail(data.email, data.password);
+			const { token, user } = await client.admins.authViaEmail(data.email, data.password);
 		} catch (err) {
 			const e = await serializeNonPOJOs(err);
 			// console.log('Error:', e);
@@ -23,6 +23,6 @@ export const actions = {
 				email: data.email
 			};
 		}
-		throw redirect(303, '/');
+		throw redirect(303, '/_/');
 	}
 };

@@ -21,12 +21,12 @@ const getMenu = async (user) => {
             {'title':'Register', 'link':'/register'}
         ]
     
-    if ( user?.avatar >= 0 )
-        // menu for administrator
-        menu1 = [
-            ...menu1,
-            {'title':'Customer Orders', 'link':'/_/order'},
-        ]
+    // if ( user?.avatar >= 0 )
+    //     // menu for administrator
+    //     menu1 = [
+    //         ...menu1,
+    //         {'title':'Customer Orders', 'link':'/_/order'},
+    //     ]
     
     return menu1
 }
